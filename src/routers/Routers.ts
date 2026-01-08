@@ -9,8 +9,8 @@ const router = Router();
 const BASE_URL = process.env.BASE_URL;
 
 router.get('/weather', (req: Request, res: Response) => {
-    const city = req.query.city as string;
-    axios.get(`${BASE_URL}/timeline/${city}?key=${process.env.API_KEY}`)
+    const city = req.body.city;
+    axios.get(`${BASE_URL}${city}?key=${process.env.API_KEY}`)
         .then(response => {
             res.json(response.data);
         })
