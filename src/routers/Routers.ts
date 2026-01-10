@@ -1,23 +1,9 @@
-import axios from 'axios';
-import dotenv from 'dotenv';
-import { Router, type Request, type Response } from "express";
-
-dotenv.config();
+import { Router } from "express";
+import WeatherController from "../controller/WeatherController";
 
 const router = Router();
+const controller = new WeatherController();
 
-const BASE_URL = process.env.BASE_URL;
-
-router.get('/weather', (req: Request, res: Response) => {
-    const city = req.body.city;
-    axios.get(`${BASE_URL}${city}?key=${process.env.API_KEY}`)
-        .then(response => {
-            res.json(response.data);
-        })
-        .catch(error => {
-            console.error(error);
-            res.status(500).json({ error: 'Failed to fetch weather data' });
-        });
-});
+router.get("/", (req, res) => controller.getWeather(req, res));
 
 export { router as Routers };
