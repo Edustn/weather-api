@@ -8,9 +8,9 @@ const port = Number(process.env.PORT) || 3050;
 app.use(express.json());
 app.use("/", Routers);
 
-app.get("/health", (_req, res) => {
-  res.json({ ok: true });
-});
+// app.get("/health", (_req, res) => {
+//   res.json({ ok: true });
+// });
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
